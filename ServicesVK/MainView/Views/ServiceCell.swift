@@ -42,7 +42,7 @@ class ServiceCell: UITableViewCell {
         let title = UILabel()
         title.textAlignment = .left
         title.numberOfLines = 1
-        title.font = UIFont.boldSystemFont(ofSize: 17)
+        title.font = UIFont.boldSystemFont(ofSize: 18)
         title.text = "error from server"
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
@@ -52,7 +52,7 @@ class ServiceCell: UITableViewCell {
         let subtitle = UILabel()
         subtitle.textAlignment = .left
         subtitle.numberOfLines = 2
-        title.font = UIFont.systemFont(ofSize: 17)
+        subtitle.font = UIFont.systemFont(ofSize: 15)
         subtitle.text = "error from server"
         subtitle.translatesAutoresizingMaskIntoConstraints = false
         return subtitle
@@ -84,19 +84,19 @@ class ServiceCell: UITableViewCell {
     func configure(image: String, title: String, subtitle: String) {
         DispatchQueue.global().async {
             guard let imageURL = URL(string: image),
-                        let imageData = try? Data(contentsOf: imageURL)
-                  else {
+                  let imageData = try? Data(contentsOf: imageURL)
+            else {
                 DispatchQueue.main.async {
-                    self.imageViewCell.image = UIImage(named: "1")
+                    self.imageViewCell.image = UIImage(systemName: "questionmark")
                 }
-                     return
-                  }
-                  
-                  DispatchQueue.main.async {
-                      self.imageViewCell.image = UIImage(data: imageData)
-                  }
-         
-              }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.imageViewCell.image = UIImage(data: imageData)
+            }
+
+        }
         self.title.text = title
         self.subtitle.text = subtitle
     }

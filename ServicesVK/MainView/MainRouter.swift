@@ -11,7 +11,6 @@ import UIKit
 protocol MainRouting {
     func routeToPage(_ webPage: String)
     func routeToAlert(title: String, message: String, completion: @escaping(() -> Void))
-   
 }
 
 final class MainRouter: MainRouting {

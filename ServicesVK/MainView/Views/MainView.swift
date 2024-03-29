@@ -22,12 +22,11 @@ final class MainView: UIView {
     
     private var servicesList: [ServiceViewModel]
     private var delegate: ServiceTapHandler
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        //tableView.backgroundColor =  Colors.text?.withAlphaComponent(0.3)
-        //tableView.layer.cornerRadius = 15
-        //tableView.isHidden = true
+        tableView.isHidden = true
         tableView.register(ServiceCell.self, forCellReuseIdentifier: "Cell")
         return tableView
     }()
@@ -39,7 +38,6 @@ final class MainView: UIView {
         return activityIndicator
     }()
     
-   
     init(servicesList: [ServiceViewModel], delegate: ServiceTapHandler) {
         self.servicesList = servicesList
         self.delegate = delegate
@@ -80,8 +78,6 @@ extension MainView: DisplaysData  {
     func display(with error: String) {
         self.tableView.isHidden = true
         stopLoading()
-        print("error in view came")
-      
     }
     
     func configure(with viewModel: [ServiceViewModel]) {
